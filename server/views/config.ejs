@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <title>LucaSpotify</title>
+  <link rel="stylesheet" href="css/config.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="title">Choice a playlist:</h1>
+    <div id="caixa-playlist" class="caixa-playlist grey-box">
+      <% ArrayPlaylist.forEach(function(playlist) { %>
+        <div id="<%= playlist.uri %>" class="playlist-container" onclick="Teste(this)">
+          <img src="<%= playlist.cover %>" alt="<%= playlist.nome %>">
+          <div class="playlist-text">
+            <h3 class="playlist-nome">
+              <%= playlist.name %>
+            </h3>
+            <p class="playlist-owner">by <%= playlist.owner %>
+            </p>
+          </div>
+        </div>
+        <% }); %>
+    </div>
+
+    <h1 class="title">Choice where to play:</h1>
+    <div id="caixa-devices" class="caixa-devices grey-box">
+      <% ArrayDevices.forEach(function(device) { %>
+        <div id="<%= device.id %>" class="device-container" onclick="Teste2(this)">
+          <div class="device-text">
+            <h3 class="device-nome">
+              <%= device.name %>
+            </h3>
+            <p class="device-type">
+              <%= device.type %>
+            </p>
+          </div>
+        </div>
+        <% }); %>
+    </div>
+
+    <button id="Play" class="buttonPlay button">Play</button>
+
+  </div>
+  <script src="js/config.js"></script>
+  <!-- <script>
+    var PlaylistUri = "";
+    var DeviceId = "";
+
+    console.log({ArrayPlaylist: ArrayPlaylist, ArrayDevices: ArrayDevices})
+
+    let PlayButton = document.getElementById("Play");
+
+    function Teste(target) {
+      target.style.border = "2px solid #1AA34A";
+      PlaylistUri = target.id;
+    }
+
+    function Teste2(target) {
+      target.style.border = "2px solid #1AA34A";
+      DeviceId = target.id;
+    }
+
+    PlayButton.onclick = function () {
+      console.log('DeviceId', DeviceId);
+      if (PlaylistUri != "" && DeviceId != "") {
+        var url = `http://localhost:8888/player?playlist=${PlaylistUri}&device=${DeviceId}`;
+        window.location.href = url;
+      }
+    }
+
+  </script> -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <title>SpotifyApp</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="container">
+
+      <h1 class="title">SpotifyApp</h1>
+
+        <div class="buttons">
+
+          <div id="containerPlayer" class="container-playing">
+            <img src="<%= playingphoto %>" alt="Album cover">
+            <div class="playing-text">
+              <span id="playing-music" class="playing-music"><%= playingMusic %></span>
+              <span class="playing-artist"><%= playingArtist %></span>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button id="prevButton" class="btnPauseProx btn-backward">
+              <img class="pauseProx" src="images/anterior.svg" alt="">
+            </button>
+            <button id="pauseButton"  class="btnPauseProx pauseButton">
+              <img id="imagem-pause-play" class="pauseProx" src="images/play.svg" alt="">
+            </button>
+            <button id="nextButton" class="btnPauseProx btn-forward">
+              <img class="pauseProx" src="images/proximo.svg" alt="">
+            </button>
+            <button id="muteButton" class="btnPauseProx btn-mute">
+              <img class="pauseProx mute" src="images/mute.svg" alt="">
+            </button>
+          </div>
+
+          <button id="ConfigurarPlayerButton" class="button button9">Configure Player</button>
+
+          <button id="topSongsButton" class="button button4">My Top Songs</button>
+          <div id="music box" class="music box grey-box">
+            <p id="songsText" class="grey-box-text"> <ol class="list">
+              <% music.split('# ').forEach(function(musica) { %>
+                <li><%= musica %></li>
+              <% }); %>
+            </ol> </p>
+          </div>
+
+          <button id="topArtistsButton" class="button button5">My Top Artists</button>
+          <div id="artist-box" class="artist-box grey-box">
+            <p id="artistsText" class="grey-box-text"><ol class="list">
+              <% artists.split('# ').forEach(function(artista) { %>
+                <li><%= artista %></li>
+              <% }); %>
+            </ol></p>
+          </div>
+
+          <button id="recentSongsButton" class="button button6">My Recent Songs</button>
+          <div id="music box-recente" class="music box-recente grey-box">
+            <p id="recentSongsText" class="grey-box-text"> <ol class="list">
+              <% RecentMusic.split('# ').forEach(function(musicaRecente) { %>
+                <li><%= musicaRecente %></li>
+              <% }); %>
+            </ol> </p>
+          </div>
+        </div>
+      </div>
+      <script type="module" src="js/main.js"></script>
+  </body>
+</html>
