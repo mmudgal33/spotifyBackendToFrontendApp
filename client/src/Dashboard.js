@@ -1,16 +1,18 @@
 import { useState, useEffect } from "react"
 import useAuth from "./useAuth"
-import Player from "./Player"
 
-import TrackSearchResult from "./TrackSearchResult"
+// import Player from "./Player"
+// import TrackSearchResult from "./TrackSearchResult"
+// import axios from "axios"
+
 import { Container, Form } from "react-bootstrap"
 import SpotifyWebApi from "spotify-web-api-node"
-import axios from "axios"
+
 
 import { spotifyService } from './SpotifyService';
 
 // http://127.0.0.1:5000
-// http://127.0.0.1:5000
+
 
 const spotifyApi = new SpotifyWebApi({
   // clientId: "8b945ef10ea24755b83ac50cede405a0",
@@ -23,12 +25,13 @@ export default function Dashboard({ code }) {
 
   console.log('Dashboard code ', code);
 
-  const accessToken = useAuth(code)
-  const [search, setSearch] = useState("")
+  const accessToken = useAuth(code);
   
-  const [searchResults1, setSearchResults1] = useState([]);
-  const [playingTrack, setPlayingTrack] = useState()
-  const [lyrics, setLyrics] = useState("")
+  // const [search, setSearch] = useState("");
+  // const [playingTrack, setPlayingTrack] = useState();
+  // const [searchResults1, setSearchResults1] = useState([]);
+  // const [lyrics, setLyrics] = useState("");
+  
 
 
   const [user, setUser] = useState(null);
@@ -37,110 +40,98 @@ export default function Dashboard({ code }) {
   const [searchResults2, setSearchResults2] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // const [data, setData] = useState({})
+  
 
   console.log('Dashboard Token ', accessToken);
   console.log('localStorage ', localStorage.getItem('spotify_access_token'))
 
-  function chooseTrack(track) {
-    setPlayingTrack(track)
-    setSearch("")
-    setLyrics("")
-  }
 
-  useEffect(() => {
-    if (!playingTrack) return
-
-    axios
-      .get("http://127.0.0.1:5000/lyrics", {
-        params: {
-          track: playingTrack.title,
-          artist: playingTrack.artist,
-        },
-      })
-      .then(res => {
-        setLyrics(res.data.lyrics)
-      })
-  }, [playingTrack])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  // setting access token
   useEffect(() => {
     if (!accessToken) return
     spotifyApi.setAccessToken(accessToken)
   }, [accessToken])
 
+
+  // function called from Form component
+  // function chooseTrack(track) {
+  //   setPlayingTrack(track)
+  //   setSearch("")
+  //   setLyrics("")
+  // }
+
+
+  // use 'lyrics-finder' library to get lyrics
+  // useEffect(() => {
+  //   if (!playingTrack) return
+
+  //   axios
+  //     .get("http://127.0.0.1:5000/lyrics", {
+  //       params: {
+  //         track: playingTrack.title,
+  //         artist: playingTrack.artist,
+  //       },
+  //     })
+  //     .then(res => {
+  //       setLyrics(res.data.lyrics)
+  //     })
+  // }, [playingTrack])
+
+
+
   // track.album.images[2]?.url
+  // get results from search form using this useEffect
+  // useEffect(() => {
+  //   if (!search) return setSearchResults1([])
+  //   if (!accessToken) return
 
-  useEffect(() => {
-    if (!search) return setSearchResults1([])
-    if (!accessToken) return
+  //   let cancel = false
+  //   spotifyApi.searchTracks(search).then(res => {
+  //     // console.log('cancel ',cancel);
+  //     if (cancel) return
+  //     // console.log('track response', res);
+  //     // setSearchResults(results.tracks.items);
+  //     setSearchResults1(
+  //       res.body.tracks.items.map(track => {
+  //         const smallestAlbumImage = track.album.images.reduce(
+  //           (smallest, image) => {
+  //             if (image.height < smallest.height) return image
+  //             return smallest
+  //           },
+  //           track.album.images[0]
+  //         )
 
-    let cancel = false
-    spotifyApi.searchTracks(search).then(res => {
-      // console.log('cancel ',cancel);
-      if (cancel) return
-      // console.log('track response', res);
-      // setSearchResults(results.tracks.items);
-      setSearchResults1(
-        res.body.tracks.items.map(track => {
-          const smallestAlbumImage = track.album.images.reduce(
-            (smallest, image) => {
-              if (image.height < smallest.height) return image
-              return smallest
-            },
-            track.album.images[0]
-          )
+  //         return {
+  //           artist: track.artists[0].name,
+  //           title: track.name,
+  //           uri: track.uri,
+  //           albumUrl: smallestAlbumImage.url,
+  //         }
+  //       })
+  //     )
 
-          return {
-            artist: track.artists[0].name,
-            title: track.name,
-            uri: track.uri,
-            albumUrl: smallestAlbumImage.url,
-          }
-        })
-      )
+  //   })
 
-
-
-    })
-
-    return () => (cancel = true)
-  }, [search, accessToken])
+  //   return () => (cancel = true)
+  // }, [search, accessToken])
 
 
 
   ////////////////////////////////////////////////////////////////////////////////////////////
   console.log('Dashboard code ', code);
-
-  // const accessToken = Auth(code);
   console.log('Dashboard Token ', accessToken);
-
-
-  // const [user, setUser] = useState(null);
-  // const [playlists, setPlaylists] = useState([]);
-  // const [topTracks, setTopTracks] = useState([]);
-  // // const [searchResults, setSearchResults] = useState([]);
-  // const [searchQuery, setSearchQuery] = useState('');
 
   console.log('playlists ', playlists);
   console.log('topTracks ', topTracks);
   console.log('user ', user);
 
+  
+
+  // call loadUserData function 
   useEffect(() => {
     loadUserData();
   }, []);
+  
 
   const loadUserData = async () => {
     try {
@@ -184,9 +175,15 @@ export default function Dashboard({ code }) {
     }
   };
 
+
+
   if (!user) {
     return <div>Loading...</div>;
   }
+
+  
+
+  
 
   /////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -203,33 +200,6 @@ export default function Dashboard({ code }) {
             <h1>Welcome, {user.display_name}</h1>
             <img src={user.images?.[0]?.url} alt="Profile" className="profile-img" />
           </header>
-
-
-          <Form.Control
-            type="search"
-            placeholder="Search Songs/Artists"
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-          />
-          <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
-            {searchResults1.map(track => (
-              <TrackSearchResult
-                track={track}
-                key={track.uri}
-                chooseTrack={chooseTrack}
-              />
-            ))}
-            {searchResults1.length === 0 && (
-              <div className="text-center" style={{ whiteSpace: "pre" }}>
-                {lyrics}
-              </div>
-
-
-            )}
-          </div>
-          <div>
-            <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
-          </div>
 
 
 
@@ -300,6 +270,36 @@ export default function Dashboard({ code }) {
             )}
           </div>
         </div>
+
+
+
+
+
+        {/* <Form.Control
+            type="search"
+            placeholder="Search Songs/Artists"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
+          <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
+            {searchResults1.map(track => (
+              <TrackSearchResult
+                track={track}
+                key={track.uri}
+                chooseTrack={chooseTrack}
+              />
+            ))}
+            {searchResults1.length === 0 && (
+              <div className="text-center" style={{ whiteSpace: "pre" }}>
+                {lyrics}
+              </div>
+
+
+            )}
+          </div>
+          <div>
+            <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
+          </div> */}
 
 
       </Container>
