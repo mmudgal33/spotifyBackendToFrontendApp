@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react"
 import useAuth from "./useAuth"
 
-// import Player from "./Player"
-// import TrackSearchResult from "./TrackSearchResult"
+import Login from "./Login"
+
 // import axios from "axios"
+// import { Player, TrackSearchResult } from "./PlayerTrackSearchResult"
 
 import { Container, Form } from "react-bootstrap"
 import SpotifyWebApi from "spotify-web-api-node"
@@ -26,11 +27,8 @@ export default function Dashboard({ code }) {
   console.log('Dashboard code ', code);
 
   const accessToken = useAuth(code);
-  
-  // const [search, setSearch] = useState("");
-  // const [playingTrack, setPlayingTrack] = useState();
-  // const [searchResults1, setSearchResults1] = useState([]);
-  // const [lyrics, setLyrics] = useState("");
+
+
   
 
 
@@ -53,67 +51,7 @@ export default function Dashboard({ code }) {
   }, [accessToken])
 
 
-  // function called from Form component
-  // function chooseTrack(track) {
-  //   setPlayingTrack(track)
-  //   setSearch("")
-  //   setLyrics("")
-  // }
-
-
-  // use 'lyrics-finder' library to get lyrics
-  // useEffect(() => {
-  //   if (!playingTrack) return
-
-  //   axios
-  //     .get("http://127.0.0.1:5000/lyrics", {
-  //       params: {
-  //         track: playingTrack.title,
-  //         artist: playingTrack.artist,
-  //       },
-  //     })
-  //     .then(res => {
-  //       setLyrics(res.data.lyrics)
-  //     })
-  // }, [playingTrack])
-
-
-
-  // track.album.images[2]?.url
-  // get results from search form using this useEffect
-  // useEffect(() => {
-  //   if (!search) return setSearchResults1([])
-  //   if (!accessToken) return
-
-  //   let cancel = false
-  //   spotifyApi.searchTracks(search).then(res => {
-  //     // console.log('cancel ',cancel);
-  //     if (cancel) return
-  //     // console.log('track response', res);
-  //     // setSearchResults(results.tracks.items);
-  //     setSearchResults1(
-  //       res.body.tracks.items.map(track => {
-  //         const smallestAlbumImage = track.album.images.reduce(
-  //           (smallest, image) => {
-  //             if (image.height < smallest.height) return image
-  //             return smallest
-  //           },
-  //           track.album.images[0]
-  //         )
-
-  //         return {
-  //           artist: track.artists[0].name,
-  //           title: track.name,
-  //           uri: track.uri,
-  //           albumUrl: smallestAlbumImage.url,
-  //         }
-  //       })
-  //     )
-
-  //   })
-
-  //   return () => (cancel = true)
-  // }, [search, accessToken])
+  
 
 
 
@@ -148,6 +86,11 @@ export default function Dashboard({ code }) {
       console.error('Error loading user data:', error);
     }
   };
+
+
+
+
+
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -199,6 +142,7 @@ export default function Dashboard({ code }) {
           <header>
             <h1>Welcome, {user.display_name}</h1>
             <img src={user.images?.[0]?.url} alt="Profile" className="profile-img" />
+            {/* <button onClick={()=>spotifyService.logout()}>Logout</button> */}
           </header>
 
 
@@ -273,45 +217,7 @@ export default function Dashboard({ code }) {
 
 
 
-
-
-        {/* <Form.Control
-            type="search"
-            placeholder="Search Songs/Artists"
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-          />
-          <div className="flex-grow-1 my-2" style={{ overflowY: "auto" }}>
-            {searchResults1.map(track => (
-              <TrackSearchResult
-                track={track}
-                key={track.uri}
-                chooseTrack={chooseTrack}
-              />
-            ))}
-            {searchResults1.length === 0 && (
-              <div className="text-center" style={{ whiteSpace: "pre" }}>
-                {lyrics}
-              </div>
-
-
-            )}
-          </div>
-          <div>
-            <Player accessToken={accessToken} trackUri={playingTrack?.uri} />
-          </div> */}
-
-
       </Container>
-
-
-
-
-
-
-
-
-
 
     </>
   )

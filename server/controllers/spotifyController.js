@@ -6,6 +6,7 @@ const URI = process.env.URI;
 // const url = 'http://127.0.0.1:5000'
 
 
+
 const SpotifyWebApi = require('spotify-web-api-node');
 require('dotenv').config();
 
@@ -70,20 +71,18 @@ class Device {
 }
 
 
-
 spotifyController.get('', (req, res) => {
     res.render("login");
 });
 
 
 
-
-
-
-
 spotifyController.get('/login', (req, res) => {
     res.redirect(spotifyApi.createAuthorizeURL(scopes));
 });
+
+
+
 
 
 
@@ -236,67 +235,6 @@ spotifyController.get('/main', (req, res) => {
 });
 
 
-// spotifyController.get('/dmain', (req, res) => {
-
-//     const spotifyApi = new SpotifyWebApi({
-//         //   redirectUri: process.env.REDIRECT_URI,
-//         //   clientId: process.env.CLIENT_ID,
-//         //   clientSecret: process.env.CLIENT_SECRET,
-//         clientId: 'e257dc917f8640b5a9afe2f6e6ac1ef9',
-//         clientSecret: 'b7265469b062446b973c4ad5a4e24c53',
-//         redirectUri: 'http://127.0.0.1:3000/callback',
-//     })
-
-//     Promise.all([
-//         spotifyApi.getMyTopArtists({ limit: 20, time_range: 'long_term' }),
-//         spotifyApi.getMyTopTracks({ limit: 20, time_range: 'long_term' }),
-//         spotifyApi.getMyRecentlyPlayedTracks({ limit: 20 }),
-//         spotifyApi.getMyCurrentPlaybackState(),
-//         spotifyApi.getMyCurrentPlayingTrack(),
-//         spotifyApi.getMe()
-//     ])
-//         .then(function ([artistData, trackData, recentlyPlayedData, playbackStateData, playingData, meData]) {
-//             let artists = artistData.body.items.map(artist => artist.name).join('# ');
-//             let music = trackData.body.items.map(track => `${track.name} - ${track.artists[0].name}`).join('# ');
-//             let RecentMusic = recentlyPlayedData.body.items.map(item => `${item.track.name} - ${item.track.artists[0].name}`).join('# ');
-//             let playingMusic = "";
-//             let playingArtist = "";
-//             let playingphoto = "";
-//             //   console.log('artistData: ',artistData);
-//             //   console.log('############################################################################');
-//             //   console.log('trackData: ',trackData);
-//             //   console.log('recentlyPlayedData: ',recentlyPlayedData);
-//             //   console.log('playbackStateData: ',playbackStateData);
-//             //   console.log('playingData: ',playingData);
-//             //   console.log('meData: ', meData);
-
-//             //   console.log('playingData.body.item.album: ', playingData.body.item.album);
-
-//             if (playbackStateData.body && playbackStateData.body.is_playing) {
-//                 playingMusic = playingData.body.item.name;
-//                 playingArtist = playingData.body.item.artists[0].name;
-//                 playingphoto = playingData.body.item.album.images[0].url;
-//                 MusicPlaying = true;
-//             }
-//             else {
-//                 playingMusic = "Clique";
-//                 playingArtist = "Play to continue what was playing";
-//                 playingphoto = "images/nada.jpeg";
-//                 MusicPlaying = false;
-//             }
-//             idUser = meData.body.id;
-//             console.log("music name: " + playingMusic);
-//             console.log("artist name: " + playingArtist);
-//             console.log("photo url: " + playingphoto)
-//             // res.render("main", { artists: artists, music: music, RecentMusic: RecentMusic, playingMusic: playingMusic, playingArtist: playingArtist, playingphoto: playingphoto });
-//             console.log("main", { artists: artists, music: music, RecentMusic: RecentMusic, playingMusic: playingMusic, playingArtist: playingArtist, playingphoto: playingphoto })
-//             res.json({ artists: artists, music: music, RecentMusic: RecentMusic, playingMusic: playingMusic, playingArtist: playingArtist, playingphoto: playingphoto });
-//         },
-//          function (err) {
-//             res.redirect(`http://127.0.0.1:5000/error?error=${err.statusCode}`);
-//             console.log('error', err)
-//         });
-// });
 
 
 
