@@ -1,5 +1,6 @@
 
-const API = 'http://127.0.0.1:5000';
+// const API = 'http://127.0.0.1:5000';
+const API = 'https://spotifybackendtofrontendapp-1.onrender.com';
 
 var PlaylistUri = "";
 var DeviceId = "";
