@@ -1,3 +1,6 @@
+
+const API = 'http://127.0.0.1:5000';
+
 var PlaylistUri = "";
 var DeviceId = "";
 
@@ -21,7 +24,7 @@ function Teste2(target) {
 PlayButton.onclick = function() {
     console.log('DeviceId', DeviceId);
     if(PlaylistUri != "" && DeviceId != ""){
-        var url = `http://127.0.0.1:5000/player?playlist=${PlaylistUri}&device=${DeviceId}`;
+        var url = `${API}/player?playlist=${PlaylistUri}&device=${DeviceId}`;
         window.location.href = url;
     }
 }

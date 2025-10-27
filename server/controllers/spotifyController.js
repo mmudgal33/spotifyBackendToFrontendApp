@@ -1,7 +1,12 @@
 const spotifyController = require('express').Router()
 const lyricsFinder = require("lyrics-finder")
 
-const URI = process.env.URI;
+
+// const config = require('./Constants')
+
+// const URI = process.env.REDIRECT_URI;
+const URL = process.env.URL;
+const API = process.env.API;
 
 // const url = 'http://127.0.0.1:5000'
 
@@ -40,9 +45,11 @@ var spotifyApi = new SpotifyWebApi({
 
     clientId: 'e257dc917f8640b5a9afe2f6e6ac1ef9',
     clientSecret: 'b7265469b062446b973c4ad5a4e24c53',
-    redirectUri: 'http://127.0.0.1:5000/callback'
-    // redirectUri: 'http://127.0.0.1:5000/callback'
-    // redirectUri: URI || 'http://127.0.0.1:5000/callback'
+    
+    // redirectUri: 'http://127.0.0.1:5000/callback',
+
+    redirectUri: 'https://spotifybackendtofrontendapp.onrender.com/callback',
+    
 
 });
 
@@ -95,7 +102,8 @@ spotifyController.post("/login", (req, res) => {
         //   clientSecret: process.env.CLIENT_SECRET,
         clientId: 'e257dc917f8640b5a9afe2f6e6ac1ef9',
         clientSecret: 'b7265469b062446b973c4ad5a4e24c53',
-        redirectUri: 'http://127.0.0.1:3000/callback',
+        // redirectUri: 'http://127.0.0.1:3000/callback',
+        redirectUri: 'https://spotifybackendtofrontendapp-1.onrender.com/callback',
     })
 
     spotifyApi
@@ -122,7 +130,8 @@ spotifyController.post("/refresh", (req, res) => {
         //   clientSecret: process.env.CLIENT_SECRET,
         clientId: 'e257dc917f8640b5a9afe2f6e6ac1ef9',
         clientSecret: 'b7265469b062446b973c4ad5a4e24c53',
-        redirectUri: 'http://127.0.0.1:3000/callback',
+        // redirectUri: 'http://127.0.0.1:3000/callback',
+        redirectUri: 'https://spotifybackendtofrontendapp-1.onrender.com/callback',
 
         refreshToken,
     })
@@ -224,12 +233,12 @@ spotifyController.get('/main', (req, res) => {
             console.log("music name: " + playingMusic);
             console.log("artist name: " + playingArtist);
             console.log("photo url: " + playingphoto)
-            // res.render("main", { artists: artists, music: music, RecentMusic: RecentMusic, playingMusic: playingMusic, playingArtist: playingArtist, playingphoto: playingphoto });
+            res.render("main", { artists: artists, music: music, RecentMusic: RecentMusic, playingMusic: playingMusic, playingArtist: playingArtist, playingphoto: playingphoto });
             console.log("main", { artists: artists, music: music, RecentMusic: RecentMusic, playingMusic: playingMusic, playingArtist: playingArtist, playingphoto: playingphoto })
-            res.json({ artists: artists, music: music, RecentMusic: RecentMusic, playingMusic: playingMusic, playingArtist: playingArtist, playingphoto: playingphoto });
+            // res.json({ artists: artists, music: music, RecentMusic: RecentMusic, playingMusic: playingMusic, playingArtist: playingArtist, playingphoto: playingphoto });
         },
          function (err) {
-            res.redirect(`http://127.0.0.1:5000/error?error=${err.statusCode}`);
+            res.redirect(`${API}/error?error=${err.statusCode}`);
             console.log('error', err)
         });
 });
@@ -275,11 +284,11 @@ spotifyController.get('/config', (req, res) => {
                     ArrayDevices.push(d);
                 }
             }
-            // res.render('config', { ArrayPlaylist: ArrayPlaylist, ArrayDevices: ArrayDevices });
+            res.render('config', { ArrayPlaylist: ArrayPlaylist, ArrayDevices: ArrayDevices });
             console.log('config', { ArrayPlaylist: ArrayPlaylist, ArrayDevices: ArrayDevices })
             
         }, function (err) {
-            res.redirect(`http://127.0.0.1:5000/error?error=${err.statusCode}`);
+            res.redirect(`${API}/error?error=${err.statusCode}`);
             console.log('error', err)
         });
 });
@@ -303,11 +312,11 @@ spotifyController.get('/player', async (req, res) => {
         "device_id": device,
     })
         .then(function () {
-            res.redirect(307, 'http://127.0.0.1:5000/main');
+            res.redirect(307, `${API}/main`);
             res.redirect(307, '/main');
 
         }, function (err) {
-            res.redirect(`http://127.0.0.1:5000/error?error=${err.statusCode}`);
+            res.redirect(`${API}/error?error=${err.statusCode}`);
 
             console.error('Play error:', err.body || err);
 
@@ -326,24 +335,24 @@ spotifyController.get('/next', (req, res) => {
     if (MusicPlaying) {
         spotifyApi.skipToNext()
             .then(function () {
-                res.redirect(307, 'http://127.0.0.1:5000/main');
+                res.redirect(307, `${API}/main`);
             }, function (err) {
-                res.redirect(`http://127.0.0.1:5000/error?error=${err.statusCode}`);
+                res.redirect(`${API}/error?error=${err.statusCode}`);
             });
     }
-    else res.redirect(307, 'http://127.0.0.1:5000/main');
+    else res.redirect(307, `${API}/main`);
 });
 
 spotifyController.get('/prev', (req, res) => {
     if (MusicPlaying) {
         spotifyApi.skipToPrevious()
             .then(function () {
-                res.redirect(307, 'http://127.0.0.1:5000/main');
+                res.redirect(307, `${API}/main`);
             }, function (err) {
-                res.redirect(`http://127.0.0.1:5000/error?error=${err.statusCode}`);
+                res.redirect(`${API}/error?error=${err.statusCode}`);
             });
     }
-    else res.redirect(307, 'http://127.0.0.1:5000/main');
+    else res.redirect(307, `${API}/main`);
 });
 
 spotifyController.get('/mute', function (req, res) {
@@ -357,9 +366,9 @@ spotifyController.get('/mute', function (req, res) {
 
             spotifyApi.setVolume(newPorcVol)
                 .then(function () {
-                    res.redirect(307, 'http://127.0.0.1:5000/main');
+                    res.redirect(307, `${API}/main`);
                 }, function (err) {
-                    res.redirect(`http://127.0.0.1:5000/error?error=${err.statusCode}`);
+                    res.redirect(`${API}/error?error=${err.statusCode}`);
                 });
         })
 });
@@ -369,9 +378,9 @@ spotifyController.get('/play', function (req, res) {
         "data": "",
     })
         .then(function () {
-            res.redirect(307, 'http://127.0.0.1:5000/main');
+            res.redirect(307, `${API}/main`);
         }, function (err) {
-            res.redirect(307, 'http://127.0.0.1:5000/config');
+            res.redirect(307, `${API}/config`);
         });
 });
 

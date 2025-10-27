@@ -13,6 +13,8 @@ const playingMusic = document.getElementById("playing-music");
 const ImagemPausePlay = document.getElementById("imagem-pause-play");
 const erro = document.getElementById("erro");
 
+const API = 'http://127.0.0.1:5000';
+
 if(playingMusic.textContent != null && playingMusic.textContent != 'Clique'){
     ImagemPausePlay.src = 'images/pause.svg';
 }
@@ -59,7 +61,7 @@ muteButton.onclick = function() {
         return;
     }
     else{
-        var url = 'http://127.0.0.1:5000/mute';
+        var url = `${API}/mute`;
         window.location.href = url; 
     }
 }
@@ -67,27 +69,27 @@ muteButton.onclick = function() {
 pauseButton.onclick = function() {
     
     if(playingMusic.textContent != null && playingMusic.textContent != 'Clique'){
-        var url = 'http://127.0.0.1:5000/pause';
+        var url = `${API}/pause`;
         window.location.href = url; 
     }
     else{
-        var url = 'http://127.0.0.1:5000/play';
+        var url = `${API}/play`;
         window.location.href = url; 
     }
 
 }
 
 nextButton.onclick = function() {
-    var url = 'http://127.0.0.1:5000/next';
+    var url = `${API}/next`;
     window.location.href = url;
 }
 
 prevButton.onclick = function() {
-    var url = 'http://127.0.0.1:5000/prev';
+    var url = `${API}/prev`;
     window.location.href = url;
 }
 ConfigurarPlayerButton.onclick = function() {
-    var url = 'http://127.0.0.1:5000/config';
+    var url = `${API}/config`;
     window.location.href = url;
 }
 
