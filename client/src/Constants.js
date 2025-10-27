@@ -1,5 +1,5 @@
 const production = {
-    url: 'https://spotifybackendtofrontendapp-1.onrender.com//callback',
+    url: 'https://spotifybackendtofrontendapp-1.onrender.com/callback',
     api: 'https://spotifybackendtofrontendapp.onrender.com'
     //api: 'https://mern-task-app-foodorderingfrontend1-api.onrender.com'
   };
