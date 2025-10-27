@@ -14,7 +14,7 @@ const API = 'https://spotifybackendtofrontendapp.onrender.com';
 
 
 const SpotifyWebApi = require('spotify-web-api-node');
-require('dotenv').config();
+
 
 
 const scopes = [
