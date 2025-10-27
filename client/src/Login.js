@@ -6,7 +6,7 @@ const URL = config.url;
 
 // const SPOTIFY_AUTH_URL = 'https://accounts.spotify.com/authorize';
 const AUTH_URL = 
-  `https://accounts.spotify.com/authorize?client_id=e257dc917f8640b5a9afe2f6e6ac1ef9&response_type=code&redirect_uri=${URL}&scope=user-library-read user-read-playback-state playlist-read-collaborative playlist-read-private user-modify-playback-state user-read-private user-read-email streaming user-top-read playlist-modify-public playlist-modify-private user-library-modify`;
+  `https://accounts.spotify.com/authorize?client_id=e257dc917f8640b5a9afe2f6e6ac1ef9&response_type=code&redirect_uri=${URL}/callback&scope=user-library-read user-read-playback-state playlist-read-collaborative playlist-read-private user-modify-playback-state user-read-private user-read-email streaming user-top-read playlist-modify-public playlist-modify-private user-library-modify`;
 
   // const AUTH_URL = 
   // `https://accounts.spotify.com/authorize?client_id=e257dc917f8640b5a9afe2f6e6ac1ef9&response_type=code&redirect_uri=http://127.0.0.1:3000/callback&scope=user-library-read user-read-playback-state playlist-read-collaborative playlist-read-private user-modify-playback-state user-read-private user-read-email streaming user-top-read playlist-modify-public playlist-modify-private user-library-modify`;
