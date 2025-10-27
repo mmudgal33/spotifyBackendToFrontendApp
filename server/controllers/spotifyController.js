@@ -94,7 +94,7 @@ spotifyController.get('/login', (req, res) => {
 
 
 
-spotifyController.post("/login", (req, res) => {
+spotifyController.post('/login', (req, res) => {
     const code = req.body.code
     console.log('backend received', code)
     const spotifyApi = new SpotifyWebApi({
@@ -123,7 +123,7 @@ spotifyController.post("/login", (req, res) => {
 })
 
 
-spotifyController.post("/refresh", (req, res) => {
+spotifyController.post('/refresh', (req, res) => {
     const refreshToken = req.body.refreshToken
     const spotifyApi = new SpotifyWebApi({
         //   redirectUri: process.env.REDIRECT_URI,
