@@ -8,7 +8,7 @@ const lyricsFinder = require("lyrics-finder")
 // const URL = process.env.URL;
 // const API = process.env.API;
 
-const API = 'https://spotifybackendtofrontendapp-1.onrender.com';
+const API = 'https://spotifybackendtofrontendapp.onrender.com';
 // const url = 'http://127.0.0.1:5000'
 
 

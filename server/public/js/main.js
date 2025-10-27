@@ -14,7 +14,7 @@ const ImagemPausePlay = document.getElementById("imagem-pause-play");
 const erro = document.getElementById("erro");
 
 // const API = 'http://127.0.0.1:5000';
-const API = 'https://spotifybackendtofrontendapp-1.onrender.com';
+const API = 'https://spotifybackendtofrontendapp.onrender.com';
 
 if(playingMusic.textContent != null && playingMusic.textContent != 'Clique'){
     ImagemPausePlay.src = 'images/pause.svg';
