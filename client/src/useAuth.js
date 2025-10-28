@@ -15,8 +15,8 @@ export default function useAuth(code) {
     console.log('useAuth ', code)
     axios
       // .post("http://127.0.0.1:5000/login", 
-      .post(`${API}/login`,
-      // .post("https://spotifybackendtofrontendapp.onrender.com/login",
+      // .post(`${API}/login`,
+      .post("https://spotifybackendtofrontendapp.onrender.com/login",
         {code,}
       )
       .then(res => {
@@ -39,8 +39,8 @@ export default function useAuth(code) {
     const interval = setInterval(() => {
       axios
         // .post("http://127.0.0.1:5000/refresh", {
-        .post(`${API}/refresh`, {
-          // .post("https://spotifybackendtofrontendapp.onrender.com/refresh", {
+        // .post(`${API}/refresh`, {
+          .post("https://spotifybackendtofrontendapp.onrender.com/refresh", {
           refreshToken,
         })
         .then(res => {
