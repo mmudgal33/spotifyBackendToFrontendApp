@@ -8,9 +8,9 @@ const port = process.env.PORT || 5000;
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-const spotifyController = require('./controllers/spotifyController')
+// const spotifyController = require('./controllers/spotifyController')
 
-// const nodejsspotify = require('./controllers/nodejsspotify')
+const spotifyBackend = require('./controllers/spotifyBackend')
 
 const app = express()
   
@@ -31,8 +31,8 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use('/images', express.static('public/images'))
 
-app.use('/', spotifyController)
-// app.use('/', nodejsspotify)
+// app.use('/', spotifyController)
+app.use('/', spotifyBackend)
 
 
 

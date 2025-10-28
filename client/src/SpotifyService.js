@@ -9,8 +9,8 @@ const API = config.api;
 class SpotifyService {
     constructor() {
       // this.baseURL = 'http://127.0.0.1:5000';
-      this.baseURL = 'https://spotifybackendtofrontendapp.onrender.com';
-      // this.baseURL = `${API}`;
+      // this.baseURL = 'https://spotifybackendtofrontendapp.onrender.com';
+      this.baseURL = `${API}`;
       this.accessToken = localStorage.getItem('accessToken');
       this.refreshToken = localStorage.getItem('refreshToken');
     }
