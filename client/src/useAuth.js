@@ -15,7 +15,7 @@ export default function useAuth(code) {
     console.log('useAuth ', code)
     axios
       // .post("http://127.0.0.1:5000/login", 
-      .post(`${API}/loginpost`,
+      .post(`${API}/login`,
       // .post("https://spotifybackendtofrontendapp.onrender.com/login",
         {code,}
       )

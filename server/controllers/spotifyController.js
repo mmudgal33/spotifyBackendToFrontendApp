@@ -342,7 +342,7 @@ const spotifyApi2 = new SpotifyWebApi({
 
 
 
-spotifyController.post('/loginpost', (req, res) => {
+spotifyController.post('/login', (req, res) => {
     const code = req.body.code
     console.log('backend received', code)
     // const spotifyApi2 = new SpotifyWebApi({
