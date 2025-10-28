@@ -11,8 +11,8 @@ const lyricsFinder = require("lyrics-finder")
 const API = 'https://spotifybackendtofrontendapp.onrender.com';
 
 // const url = 'http://127.0.0.1:5000'
-const URL = 'https://spotifybackendtofrontendapp-1.onrender.com';
-
+// var URL = 'https://spotifybackendtofrontendapp-1.onrender.com';
+var URL = '';
 
 const scopes = [
     'ugc-image-upload',
@@ -347,6 +347,10 @@ const spotifyApi2 = new SpotifyWebApi({
 
 spotifyController.post('/login', (req, res) => {
     const code = req.body.code
+    const url = req.body.URL
+    URL=url
+    console.log( url)
+
     console.log('backend received', code)
     // const spotifyApi2 = new SpotifyWebApi({
     //     //   redirectUri: process.env.REDIRECT_URI,

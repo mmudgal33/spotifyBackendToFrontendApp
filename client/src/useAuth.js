@@ -3,6 +3,7 @@ import axios from "axios"
 
 import { config } from './Constants';
 const API = config.api;
+const URL = config.url;
 
 
 
@@ -12,12 +13,12 @@ export default function useAuth(code) {
   const [expiresIn, setExpiresIn] = useState()
 
   useEffect(() => {
-    console.log('useAuth ', code, API)
+    console.log('useAuth ', code, API, URL)
     axios
       // .post("http://127.0.0.1:5000/login", 
       .post(`${API}/login`,
       // .post("https://spotifybackendtofrontendapp.onrender.com/login",
-        {code,}
+        {code, URL}
       )
       .then(res => {
         setAccessToken(res.data.accessToken)
