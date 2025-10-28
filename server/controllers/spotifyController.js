@@ -1,20 +1,15 @@
 const spotifyController = require('express').Router()
+const SpotifyWebApi = require('spotify-web-api-node');
 const lyricsFinder = require("lyrics-finder")
-
-
-// const config = require('./Constants')
 
 // const URI = process.env.REDIRECT_URI;
 // const URL = process.env.URL;
 // const API = process.env.API;
 
+//////////////////////////////////////////  BACKEND CODE  //////////////////////////////////////////////
+
 const API = 'https://spotifybackendtofrontendapp.onrender.com';
 // const url = 'http://127.0.0.1:5000'
-
-
-
-const SpotifyWebApi = require('spotify-web-api-node');
-
 
 
 const scopes = [
@@ -338,7 +333,8 @@ spotifyController.get('/error', (req, res) => {
 
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////  FRONTEND CODE  /////////////////////////////////////////////
+
 const spotifyApi2 = new SpotifyWebApi({
     //   redirectUri: process.env.REDIRECT_URI,
     //   clientId: process.env.CLIENT_ID,
@@ -353,7 +349,7 @@ const spotifyApi2 = new SpotifyWebApi({
 
 
 
-spotifyController.post('/login', (req, res) => {
+spotifyController.post('/loginpost', (req, res) => {
     const code = req.body.code
     console.log('backend received', code)
     // const spotifyApi2 = new SpotifyWebApi({
