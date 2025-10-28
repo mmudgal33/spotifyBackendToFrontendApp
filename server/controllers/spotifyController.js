@@ -6,7 +6,7 @@ const dotenv = require('dotenv').config()
 
 if (process.env.NODE_ENV === 'production') {
     // Production optimizations
-    REDIRECT_URI='https://spotifybackendtofrontendappF.onrender.com',
+    REDIRECT_URI='https://spotifybackendtofrontendappf.onrender.com',
     API='https://spotifybackendtofrontendapp.onrender.com'
   } else {
     // Development features
