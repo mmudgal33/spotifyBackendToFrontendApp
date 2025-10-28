@@ -35,18 +35,12 @@ const scopes = [
 ];
 
 var spotifyApi = new SpotifyWebApi({
-    // clientId: process.env.SPOTIFY_CLIENT_ID,
-    // clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-    // redirectUri: "http://127.0.0.1:5000/callback",
 
-    clientId: 'e257dc917f8640b5a9afe2f6e6ac1ef9',
-    clientSecret: 'b7265469b062446b973c4ad5a4e24c53',
-    
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
     // redirectUri: 'http://127.0.0.1:5000/callback',
-
     redirectUri: 'https://spotifybackendtofrontendapp.onrender.com/callback',
     
-
 });
 
 
@@ -337,10 +331,9 @@ spotifyController.get('/error', (req, res) => {
 
 const spotifyApi2 = new SpotifyWebApi({
     //   redirectUri: process.env.REDIRECT_URI,
-    //   clientId: process.env.CLIENT_ID,
-    //   clientSecret: process.env.CLIENT_SECRET,
-    clientId: 'e257dc917f8640b5a9afe2f6e6ac1ef9',
-    clientSecret: 'b7265469b062446b973c4ad5a4e24c53',
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+    
     // redirectUri: 'http://127.0.0.1:3000/callback',
     redirectUri: 'https://spotifybackendtofrontendapp-1.onrender.com/callback',
 })
@@ -355,9 +348,7 @@ spotifyController.post('/loginpost', (req, res) => {
     // const spotifyApi2 = new SpotifyWebApi({
     //     //   redirectUri: process.env.REDIRECT_URI,
     //     //   clientId: process.env.CLIENT_ID,
-    //     //   clientSecret: process.env.CLIENT_SECRET,
-    //     clientId: 'e257dc917f8640b5a9afe2f6e6ac1ef9',
-    //     clientSecret: 'b7265469b062446b973c4ad5a4e24c53',
+    //     //   clientSecret: process.env.CLIENT_SECRET, 
     //     redirectUri: 'http://127.0.0.1:3000/callback',
     //     // redirectUri: 'https://spotifybackendtofrontendapp-1.onrender.com/callback',
     // })
@@ -384,8 +375,6 @@ spotifyController.post('/refresh', (req, res) => {
     //     //   redirectUri: process.env.REDIRECT_URI,
     //     //   clientId: process.env.CLIENT_ID,
     //     //   clientSecret: process.env.CLIENT_SECRET,
-    //     clientId: 'e257dc917f8640b5a9afe2f6e6ac1ef9',
-    //     clientSecret: 'b7265469b062446b973c4ad5a4e24c53',
     //     redirectUri: 'http://127.0.0.1:3000/callback',
     //     // redirectUri: 'https://spotifybackendtofrontendapp-1.onrender.com/callback',
 

@@ -12,8 +12,8 @@ const spotifyApi = new SpotifyWebApi({
     //   clientSecret: process.env.CLIENT_SECRET,
     clientId: 'e257dc917f8640b5a9afe2f6e6ac1ef9',
     clientSecret: 'b7265469b062446b973c4ad5a4e24c53',
-    // redirectUri: 'http://127.0.0.1:3000/callback',
-    redirectUri: 'https://spotifybackendtofrontendapp-1.onrender.com/callback',
+    redirectUri: 'http://127.0.0.1:3000/callback',
+    // redirectUri: 'https://spotifybackendtofrontendapp-1.onrender.com/callback',
 })
 
 
