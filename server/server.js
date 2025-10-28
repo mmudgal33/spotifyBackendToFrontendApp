@@ -34,10 +34,6 @@ app.use('/images', express.static('public/images'))
 app.use('/', spotifyController)
 // app.use('/', nodejsspotify)
 
-app.get('/*splat',(req,res) =>{
-  res.send('404 page not found');
-} );
-
 
 
 app.listen(port, () => {
