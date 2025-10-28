@@ -6,10 +6,12 @@ const lyricsFinder = require("lyrics-finder")
 // const URL = process.env.URL;
 // const API = process.env.API;
 
-//////////////////////////////////////////  BACKEND CODE  //////////////////////////////////////////////
+//////////////////////////////////////////  BACKEND APP CODE  //////////////////////////////////////////////
 
 const API = 'https://spotifybackendtofrontendapp.onrender.com';
+
 // const url = 'http://127.0.0.1:5000'
+const URL = 'https://spotifybackendtofrontendapp-1.onrender.com';
 
 
 const scopes = [
@@ -327,14 +329,15 @@ spotifyController.get('/error', (req, res) => {
 
 
 
-////////////////////////////////////////////  FRONTEND CODE  /////////////////////////////////////////////
+////////////////////////////////////////////  FRONTEND APP CODE  /////////////////////////////////////////////
 
 const spotifyApi2 = new SpotifyWebApi({
     //   redirectUri: process.env.REDIRECT_URI,
       clientId: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
     
-    redirectUri: 'http://127.0.0.1:3000/callback',
+    // redirectUri: 'http://127.0.0.1:3000/callback',
+    redirectUri: `${URL}/callback`,
     // redirectUri: 'https://spotifybackendtofrontendapp-1.onrender.com/callback',
 })
 

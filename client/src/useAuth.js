@@ -12,7 +12,7 @@ export default function useAuth(code) {
   const [expiresIn, setExpiresIn] = useState()
 
   useEffect(() => {
-    console.log('useAuth ', code)
+    console.log('useAuth ', code, API)
     axios
       // .post("http://127.0.0.1:5000/login", 
       .post(`${API}/login`,
