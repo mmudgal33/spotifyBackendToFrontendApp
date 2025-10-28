@@ -4,15 +4,23 @@ const lyricsFinder = require("lyrics-finder")
 
 const dotenv = require('dotenv').config()
 
+if (process.env.NODE_ENV === 'production') {
+    // Production optimizations
+    REDIRECT_URI='https://spotifybackendtofrontendappF.onrender.com',
+    API='https://spotifybackendtofrontendapp.onrender.com'
+  } else {
+    // Development features
+    REDIRECT_URI='http://127.0.0.1:3000',
+    API='http://127.0.0.1:5000'
+  }
+
 
 //////////////////////////////////////////  BACKEND APP CODE  //////////////////////////////////////////////
 
-const API = 'https://spotifybackendtofrontendapp.onrender.com';
+// const API = 'https://spotifybackendtofrontendapp.onrender.com';
 // const API = 'http://127.0.0.1:5000'
 
-// var URL = 'https://spotifybackendtofrontendappF.onrender.com';
-var URL = 'http://127.0.0.1:3000';
-// var URL = '';
+
 
 const scopes = [
     'ugc-image-upload',
@@ -332,15 +340,16 @@ spotifyController.get('/error', (req, res) => {
 ////////////////////////////////////////////  FRONTEND APP CODE  /////////////////////////////////////////////
 
 const spotifyApi2 = new SpotifyWebApi({
-    //   redirectUri: process.env.REDIRECT_URI,
-    //   clientId: process.env.CLIENT_ID,
-    //   clientSecret: process.env.CLIENT_SECRET,
+    // redirectUri: process.env.REDIRECT_URI,
+    // clientId: process.env.CLIENT_ID,
+    // clientSecret: process.env.CLIENT_SECRET,
     
     clientId: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    redirectUri: `${URL}/callback`,
+    redirectUri: `${REDIRECT_URI}/callback`,
+    
     // redirectUri: 'http://127.0.0.1:3000/callback',
-    // redirectUri: 'https://spotifybackendtofrontendapp-1.onrender.com/callback',
+    // redirectUri: 'https://spotifybackendtofrontendappF.onrender.com',
 })
 
 
@@ -348,11 +357,8 @@ const spotifyApi2 = new SpotifyWebApi({
 
 spotifyController.post('/login', (req, res) => {
     const code = req.body.code
-    const url = req.body.URL
-    URL=url
-    console.log(url)
-    // console.log('ex', config.url)
     console.log('backend received', code)
+    console.log('redirectUri ',REDIRECT_URI)
     // const spotifyApi2 = new SpotifyWebApi({
     //     //   redirectUri: process.env.REDIRECT_URI,
     //     //   clientId: process.env.CLIENT_ID,
