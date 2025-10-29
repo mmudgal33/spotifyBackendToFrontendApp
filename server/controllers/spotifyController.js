@@ -4,22 +4,22 @@ const lyricsFinder = require("lyrics-finder")
 
 const dotenv = require('dotenv').config()
 
-// if (process.env.NODE_ENV === 'production') {
-//     // Production optimizations
-//     REDIRECT_URI='https://spotifybackendtofrontendappf.onrender.com',
-//     API='https://spotifybackendtofrontendapp.onrender.com'
-//   } else {
-//     // Development features
-//     REDIRECT_URI='http://127.0.0.1:3000',
-//     API='http://127.0.0.1:5000'
-//   }
+if (process.env.NODE_ENV === 'production') {
+    // Production optimizations
+    REDIRECT_URI='https://spotifybackendtofrontendappf.onrender.com',
+    API='https://spotifybackendtofrontendapp.onrender.com'
+  } else {
+    // Development features
+    REDIRECT_URI='http://127.0.0.1:3000',
+    API='http://127.0.0.1:5000'
+  }
 
   
 //////////////////////////////////////////  BACKEND APP CODE  //////////////////////////////////////////////
 
 // const API = 'https://spotifybackendtofrontendapp.onrender.com';
 // const API = 'http://127.0.0.1:5000'
-const REDIRECT_URI='http://127.0.0.1:3000'
+// const REDIRECT_URI='http://127.0.0.1:3000'
 
 
 
