@@ -5,14 +5,27 @@ const lyricsFinder = require("lyrics-finder")
 const SpotifyWebApi = require('spotify-web-api-node');
 
 
+const dotenv = require('dotenv').config()
+
+if (process.env.NODE_ENV === 'production') {
+    // Production optimizations
+    REDIRECT_URI='https://spotifybackendtofrontendappf.onrender.com',
+    API='https://spotifybackendtofrontendapp.onrender.com'
+  } else {
+    // Development features
+    REDIRECT_URI='http://127.0.0.1:3000',
+    API='http://127.0.0.1:5000'
+  }
+
+
 
 const spotifyApi = new SpotifyWebApi({
     //   redirectUri: process.env.REDIRECT_URI,
     //   clientId: process.env.CLIENT_ID,
     //   clientSecret: process.env.CLIENT_SECRET,
-    clientId: 'e257dc917f8640b5a9afe2f6e6ac1ef9',
-    clientSecret: 'b7265469b062446b973c4ad5a4e24c53',
-    redirectUri: 'http://127.0.0.1:3000/callback',
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET,
+    redirectUri: REDIRECT_URI,
     // redirectUri: 'https://spotifybackendtofrontendapp-1.onrender.com/callback',
 })
 

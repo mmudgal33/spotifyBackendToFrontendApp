@@ -6,8 +6,8 @@ const dotenv = require('dotenv').config()
 const port = process.env.PORT;
 
 
-const spotifyController = require('./controllers/spotifyController')
-// const spotifyBackend = require('./controllers/spotifyBackend')
+// const spotifyController = require('./controllers/spotifyController')
+const spotifyBackend = require('./controllers/spotifyBackend')
 
 
 const app = express()
@@ -26,8 +26,8 @@ app.use(express.urlencoded({extended: true}))
 app.use('/images', express.static('public/images'))
 
 
-app.use('/', spotifyController)
-// app.use('/', spotifyBackend)
+// app.use('/', spotifyController)
+app.use('/', spotifyBackend)
 
 
 

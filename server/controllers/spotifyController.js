@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'production') {
     API='http://127.0.0.1:5000'
   }
 
-
+  
 //////////////////////////////////////////  BACKEND APP CODE  //////////////////////////////////////////////
 
 // const API = 'https://spotifybackendtofrontendapp.onrender.com';
@@ -358,7 +358,7 @@ const spotifyApi2 = new SpotifyWebApi({
 spotifyController.post('/login', (req, res) => {
     const code = req.body.code
     console.log('backend received', code)
-    console.log(`redirectUri ,${REDIRECT_URI}/callback`)
+    console.log(`redirectUri ${REDIRECT_URI}/callback`)
     // const spotifyApi2 = new SpotifyWebApi({
     //     //   redirectUri: process.env.REDIRECT_URI,
     //     //   clientId: process.env.CLIENT_ID,
